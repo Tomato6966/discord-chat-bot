@@ -9,32 +9,16 @@ const { escapeRegex} = require("../../handlers/functions"); //Loading all needed
 //here the event starts
 module.exports = async (client, message) => {
   try {
-    client.stats.ensure("global", {
-      commands: 0,
-      messages: 0,
-    })
     //if the message is not in a guild (aka in dms), return aka ignore the inputs
     if (!message.guild) return;
-    client.stats.ensure(message.guild.id, {
-      commands: 0,
-      messages: 0,
-    })
-    client.settings.ensure(message.guild.id, {
-      prefix: config.prefix
-    })
-    client.chatbot.ensure(message.guild.id, {
-      channels: []
-    })
     // if the message  author is a bot, return aka ignore the inputs
     if (message.author.bot) return;
     //if the channel is on partial fetch it
     if (message.channel.partial) await message.channel.fetch();
     //if the message is on partial fetch it
     if (message.partial) await message.fetch();
-    //get the current prefix from the database
-    let prefix = client.settings.get(message.guild.id, "prefix");
-    //if not in the database for some reason use the default prefix
-    if (prefix === null) prefix = config.prefix;
+    //get the current prefix from the botconfig/config.json
+    let prefix = config.prefix
     //the prefix can be a Mention of the Bot / The defined Prefix of the Bot
     const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(prefix)})\\s*`);
     //if its not that then return
@@ -101,8 +85,6 @@ module.exports = async (client, message) => {
           .setTitle("❌ Error | I don't have enough Permissions!")
           .setDescription("Please give me ADMINISTRATOR, because i need it to delete Messages, Create Channel and execute all Admin Commands "))
         }
-        client.stats.inc(message.guild.id, "commands")
-        client.stats.inc("global", "commands")
         //run the command with the parameters:  client, message, args, user, text, prefix,
         command.run(client, message, args, message.member, args.join(" "), prefix);
       }catch (e) {

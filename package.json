@@ -1,0 +1,19 @@
+{
+  "name": "discord_chatbot",
+  "version": "2.3.1",
+  "description": "For Questions: https://support.milrato.eu",
+  "main": "index.js",
+  "dependencies": {
+    "ascii-table": "^0.0.9",
+    "colors": "^1.4.0",
+    "cpu-stat": "^2.0.1",
+    "discord.js": "^12.5.1",
+    "enmap": "^5.8.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tomato#6966",
+  "license": "ISC"
+}

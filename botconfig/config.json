@@ -1,0 +1,7 @@
+{
+  "token": "your discord bot token from discord.com/developers",
+  "prefix": "%",
+
+  "b_id": "your id from brainshop.ai",
+  "b_key": "your key from brainshop.ai"
+}

@@ -34,10 +34,6 @@ client.cooldowns = new Discord.Collection(); //an collection for cooldown comman
 ["chatfeature"].forEach(handler => {
     require(`./modules/${handler}`)(client);
 });
-const Enmap = require("enmap");
-client.chatbot = new Enmap({name: "chatbot", ensureProps: false, dataDir: "./databases/chatbot"});
-client.stats = new Enmap({name :"stats", ensureProps: false, dataDir: "./databases/stats"})
-client.settings = new Enmap({name :"settings", ensureProps: false, dataDir: "./databases/settings"})
 //login into the bot
 client.login(require("./botconfig/config.json").token);
 /**
